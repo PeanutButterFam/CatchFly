@@ -6,9 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
     android:gravity="center"
     tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="남은 블락"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
