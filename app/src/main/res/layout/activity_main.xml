@@ -1,139 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:gravity="center"
+    tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="남은 블락"
-        android:textStyle="bold"
-        android:textSize="30sp"/>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnCount="6"
-        android:rowCount="6">
+        android:orientation="horizontal">
 
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos00"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos00" />
 
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos01"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos01"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos02"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos02"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos03"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos03"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos04"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos04"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-        <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos05"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos05"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos10"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos10"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos11"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos11"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos12"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos12"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos13"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos13"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos14"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos14"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos15"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos15"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos20"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos20"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos21"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos21"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos22"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos22"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos23"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos23"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos24"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos24"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos25"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos25"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos30"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos30"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos31"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos31"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos32"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos32"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos33"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos33"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos34"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos34"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos35"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos35"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos40"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos40"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos41"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos41"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos42"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos42"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos43"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos43"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            android:id="@+id/pos44"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos44"/>
         <Button
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-    </GridLayout>
+            android:id="@+id/pos45"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos45"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/pos50"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos50"/>
+        <Button
+            android:id="@+id/pos51"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos51"/>
+        <Button
+            android:id="@+id/pos52"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos52"/>
+        <Button
+            android:id="@+id/pos53"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos53"/>
+        <Button
+            android:id="@+id/pos54"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos54"/>
+        <Button
+            android:id="@+id/pos55"
+            style="@style/Widget.AppTheme.MyCustomButton"
+            android:text="@string/pos55"/>
+    </LinearLayout>
 
 </LinearLayout>

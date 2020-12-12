@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.AppTheme.MyCustomButton" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">@dimen/map_a_block_width</item>
+        <item name="android:layout_height">@dimen/map_a_block_height</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+    </style>
+</resources>
