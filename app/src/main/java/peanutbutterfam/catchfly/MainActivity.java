@@ -2,12 +2,20 @@ package peanutbutterfam.catchfly;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+
+class Block{
+    public static int leftBlocks = 15;
+}
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,5 +70,33 @@ public class MainActivity extends AppCompatActivity {
         btn_al.add((Button)findViewById(R.id.pos54));
         btn_al.add((Button)findViewById(R.id.pos55));
 
+        UserBtnListener userListener = new UserBtnListener();
+
+        for(int i = 0; i < btn_al.size(); i++){
+            btn_al.get(i).setOnClickListener(userListener);
+        }
+
+    }
+
+    class UserBtnListener implements View.OnClickListener{ //사용자가 버튼을 선태한 경우 리스너
+        @Override
+        public void onClick(View v) {
+            Button tmp = (Button)v;
+            //색상 변경
+            tmp.setBackgroundColor(Color.YELLOW);
+
+            if(Block.leftBlocks >= 0){
+                //남은 블럭 수 -1
+                Block.leftBlocks--;
+            }else{
+                //"You Lose" alertdialog
+                showLoseDialog();
+            }
+        }
+
+        public void showLoseDialog(){
+           ;
+        }
     }
 }
+
