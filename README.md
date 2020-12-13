@@ -46,6 +46,7 @@
 	- 📌 (5, 5) : currentPos - 1, currentPos - 6
 	- 📌 (5, 1) ~ (5, 4) : currentPos - 1, currentPos - 6, currentPos + 6
 	- 📌 만약 이동 불가능한 위치가 선택되면 위치를 다시 랜덤으로 선택해라
+	- 📌 파리가 이동한 뒤, 원래 자리의 버튼을 원래 모양으로 되돌린다.
 - 컴퓨터가 선택한 방향의 버튼 이미지 바꾸기
     - currentPos.setBackground
 
