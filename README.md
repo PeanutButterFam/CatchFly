@@ -23,7 +23,7 @@
 - 블락 색상 변경
     - button.setColor
 - 남은 블락 수 -1
-    - 전역변수 buttonCnt - 1
+    - 전역변수 leftBlocks - 1
 
 - 파리의 시작 위치를 설정한다. 36개 버튼 중 하나 랜덤으로 선택해서 이미지 바꾸기
     - ArrayList<Button>, 0 ~ 35 랜덤 선택 후 해당 버튼 setBackground
@@ -53,7 +53,7 @@
     - isSelected[currentPos - 1], isSelected[currentPos + 1], isSelected[currentPos - 6], isSelected[currentPos + 6] true/false
 	- 📌 인덱스가 0 ~ 35를 안벗어나는 것만 검사??
 - 남은 블락 수 검사
-    - 전역변수 buttonCnt >= 0 인지 검사
+    - 전역변수 leftBlocks >= 0 인지 검사
 
 ## 리소스
 - 파리 이미지
