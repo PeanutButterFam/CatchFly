@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     public void putFirstLoc(){ //처음 파리가 위치할 장소 지정
         int randomLoc = (int)(Math.random() * 36);
 
-        btn_al.get(randomLoc).setBackgroundResource(R.mipmap.bee);
+        btn_al.get(randomLoc).setBackgroundResource(R.drawable.bee);
     }
 
     class UserBtnListener implements View.OnClickListener{ //사용자가 버튼을 선태한 경우 리스너
