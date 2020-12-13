@@ -119,10 +119,62 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Integer> availablePos = new ArrayList<>();
 
         //가능한 위치 인덱스 넣기
-        availablePos.add(currentPos - 1);
-        availablePos.add(currentPos + 1);
-        availablePos.add(currentPos - 6);
-        availablePos.add(currentPos + 6);
+        switch (currentPos){
+            case 0:
+                availablePos.add(currentPos + 1);
+                availablePos.add(currentPos + 6);
+                break;
+            case 5:
+                availablePos.add(currentPos - 1);
+                availablePos.add(currentPos + 6);
+                break;
+            case 30:
+                availablePos.add(currentPos + 1);
+                availablePos.add(currentPos - 6);
+                break;
+            case 35:
+                availablePos.add(currentPos - 1);
+                availablePos.add(currentPos - 6);
+                break;
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                availablePos.add(currentPos - 1);
+                availablePos.add(currentPos + 1);
+                availablePos.add(currentPos + 6);
+                break;
+            case 6:
+            case 12:
+            case 18:
+            case 24:
+                availablePos.add(currentPos + 1);
+                availablePos.add(currentPos - 6);
+                availablePos.add(currentPos + 6);
+                break;
+            case 31:
+            case 32:
+            case 33:
+            case 34:
+                availablePos.add(currentPos - 1);
+                availablePos.add(currentPos + 1);
+                availablePos.add(currentPos - 6);
+                break;
+            case 11:
+            case 17:
+            case 23:
+            case 29:
+                availablePos.add(currentPos - 1);
+                availablePos.add(currentPos - 6);
+                availablePos.add(currentPos + 6);
+                break;
+            default:
+                availablePos.add(currentPos - 1);
+                availablePos.add(currentPos + 1);
+                availablePos.add(currentPos - 6);
+                availablePos.add(currentPos + 6);
+
+        }
 
         Collections.shuffle(availablePos);
 

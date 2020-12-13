@@ -41,7 +41,7 @@
 	- 📌 (0, 1) ~ (0, 4) : currentPos - 1, currentPos + 1, currentPos + 6
 	- 📌 (0, 5) : currentPos - 1, currentPos + 6
 	- 📌 (1, 0) ~ (4, 0) : currentPos + 1, currentPos - 6, currentPos + 6
-	- 📌 (5, 0) : currentPos + 1, currentPos - 6, currentPos + 6
+	- 📌 (5, 0) : currentPos + 1, currentPos - 6
 	- 📌 (1, 5) ~ (4, 5) : currentPos - 1, currentPos + 1, currentPos - 6
 	- 📌 (5, 5) : currentPos - 1, currentPos - 6
 	- 📌 (5, 1) ~ (5, 4) : currentPos - 1, currentPos - 6, currentPos + 6
