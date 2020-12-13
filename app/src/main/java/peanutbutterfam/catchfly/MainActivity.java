@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
         currentPos = randomLoc;
 
         isMyTurn = true;
-
 //        Handler handler = new Handler();
 //        handler.postDelayed(new Runnable() {
 //            @Override
