@@ -24,8 +24,10 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Button> btn_al = new ArrayList<>(); //버튼 리스트
     ArrayList<Boolean> isSelected = new ArrayList<>(); //사용자가 선택한 버튼
-    TextView leftBlocks;
-    Boolean isFirst = true;
+
+    TextView tvBlocks;
+    Drawable defaultBtn;
+
     Boolean isMyTurn = false;
     int currentPos;
 
@@ -76,6 +78,10 @@ public class MainActivity extends AppCompatActivity {
         btn_al.add((Button)findViewById(R.id.pos54));
         btn_al.add((Button)findViewById(R.id.pos55));
 
+        defaultBtn = btn_al.get(0).getBackground();
+
+        tvBlocks = (TextView)findViewById(R.id.tvBlocks);
+
         UserBtnListener userListener = new UserBtnListener();
 
         for(int i = 0; i < btn_al.size(); i++){
@@ -83,22 +89,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //파리 처음 위치 놓기
-        if(isFirst == true){
-            putFirstLoc();
-        }else{
-            //moveBee();
-        }
+        putFirstLoc();
+
+        System.out.println("putFirstLoc함수 끝남!");
     }
 
     public void putFirstLoc(){ //처음 파리가 위치할 장소 지정
-
         int randomLoc = (int)(Math.random() * 36);
         btn_al.get(randomLoc).setBackgroundResource(R.drawable.bee);
 
         currentPos = randomLoc;
 
         isMyTurn = true;
-        isFirst = false;
 
 //        Handler handler = new Handler();
 //        handler.postDelayed(new Runnable() {
@@ -111,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void moveBee(){ //사용자부터 번갈아 플레이
         System.out.println("현재 위치 : "+currentPos);
-        Drawable defbtn = btn_al.get(0).getBackground();
+
+        btn_al.get(currentPos).setBackground(defaultBtn);
 
         ArrayList<Integer> availablePos = new ArrayList<>();
 
@@ -121,20 +124,16 @@ public class MainActivity extends AppCompatActivity {
         availablePos.add(currentPos - 6);
         availablePos.add(currentPos + 6);
 
-        System.out.println("shuffle전 : ");
-        System.out.println(availablePos);
-
         Collections.shuffle(availablePos);
-
-        System.out.println("shuffle후 : ");
-        System.out.println(availablePos);
 
         int movedPos = availablePos.get(0);
 
         System.out.println("이동할 위치 : "+movedPos);
 
         btn_al.get(movedPos).setBackgroundResource(R.drawable.bee);
-        btn_al.get(currentPos).setBackground(defbtn);
+
+        currentPos = movedPos;
+        isMyTurn = true;
     }
 
     class UserBtnListener implements View.OnClickListener{ //사용자가 버튼을 선태한 경우 리스너
@@ -144,21 +143,24 @@ public class MainActivity extends AppCompatActivity {
             //색상 변경
             if(isMyTurn == true){
                 tmp.setBackgroundColor(Color.YELLOW);
-                isMyTurn = false;
 
                 if(Block.leftBlocks >= 0){
                     //남은 블럭 수 -1
                     Block.leftBlocks--;
+                    tvBlocks.setText("남은 블락 "+Block.leftBlocks);
                 }else{
                     //"You Lose" alertdialog
                     showLoseDialog();
                 }
+                isMyTurn = false;
+
+                //deleteBee = true;
+                moveBee();
             }
-            moveBee();
         }
 
         public void showLoseDialog(){
-           ;
+            Toast.makeText(MainActivity.this, "YOU LOSE", Toast.LENGTH_SHORT).show();
         }
     }
 }
