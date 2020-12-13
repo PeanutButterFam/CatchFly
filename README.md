@@ -29,8 +29,8 @@
     - ArrayList<Button>, 0 ~ 35 랜덤 선택 후 해당 버튼 setBackground
 - 사용자가 파리를 가두기 위해 버튼을 클릭한다
 	- 현재 위치 저장하는 변수
-	📌 파리가 위치한 버튼을 선택하면 아무 변화 없게 한다.
-	📌 이미 클릭된 버튼이면 아무 변화 없게 한다. if(isSelected == true)
+	- 📌 파리가 위치한 버튼을 선택하면 아무 변화 없게 한다.
+	- 📌 이미 클릭된 버튼이면 아무 변화 없게 한다. if(isSelected == true)
 - 현재 파리 위치 받아와서 ← ↑ → ↓ 네 방향 중에 클릭되지 않은 블락 하나 선택하기
     - 현재 위치 저장 변수 currentPos
     - currentPos - 1, currentPos + 1, currentPos - 6, currentPos + 6 중 하나 랜덤 선택 후 변수 selectedPos
