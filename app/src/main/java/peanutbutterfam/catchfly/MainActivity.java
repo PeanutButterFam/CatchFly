@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -83,8 +85,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void putFirstLoc(){ //처음 파리가 위치할 장소 지정
         int randomLoc = (int)(Math.random() * 36);
+        Drawable defbtn = btn_al.get(0).getBackground();
 
         btn_al.get(randomLoc).setBackgroundResource(R.drawable.bee);
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                btn_al.get(randomLoc).setBackground(defbtn);
+            }
+        }, 1000);
+
     }
 
     class UserBtnListener implements View.OnClickListener{ //사용자가 버튼을 선태한 경우 리스너
