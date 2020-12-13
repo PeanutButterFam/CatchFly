@@ -88,10 +88,12 @@ public class MainActivity extends AppCompatActivity {
             btn_al.get(i).setOnClickListener(userListener);
         }
 
+        for(int i = 0; i < 36; i++){
+            isSelected.add(false);
+        }
+
         //파리 처음 위치 놓기
         putFirstLoc();
-
-        System.out.println("putFirstLoc함수 끝남!");
     }
 
     public void putFirstLoc(){ //처음 파리가 위치할 장소 지정
@@ -192,22 +194,30 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Button tmp = (Button)v;
-            //색상 변경
+
             if(isMyTurn == true){
-                tmp.setBackgroundColor(Color.YELLOW);
+                if(isSelected.get(Integer.parseInt(tmp.getText().toString()) - 1) == false){
+                    //색상 변경
+                    tmp.setBackgroundColor(Color.YELLOW);
+                    //클릭한 버튼 더 이상 클릭 못하게
+                    int selectedBtn = Integer.parseInt(tmp.getText().toString()) - 1;
 
-                if(Block.leftBlocks >= 0){
-                    //남은 블럭 수 -1
-                    Block.leftBlocks--;
-                    tvBlocks.setText("남은 블락 "+Block.leftBlocks);
-                }else{
-                    //"You Lose" alertdialog
-                    showLoseDialog();
+                    System.out.println("선택된 버튼 : "+selectedBtn);
+                    isSelected.set(selectedBtn, true);
+
+                    if(Block.leftBlocks > 0){
+                        //남은 블럭 수 -1
+                        Block.leftBlocks--;
+                        tvBlocks.setText("남은 블락 "+Block.leftBlocks);
+                    }else{
+                        //"You Lose" alertdialog
+                        showLoseDialog();
+                    }
+                    isMyTurn = false;
+
+                    //deleteBee = true;
+                    moveBee();
                 }
-                isMyTurn = false;
-
-                //deleteBee = true;
-                moveBee();
             }
         }
 
