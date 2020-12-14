@@ -109,12 +109,19 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Button tmp = (Button)v;
-            int clickedBtnNum = Integer.parseInt(tmp.getText().toString()) - 1; // 클릭된 버튼 번호
+
+            int clickedBtnNum = -1;
+
+            for(int i = 0; i < btn_al.size(); i++) {
+                if(tmp == btn_al.get(i)) {
+                    clickedBtnNum = i;
+                }
+            }
 
             if(isMyTurn == true) {
                 if(isSelected.get(clickedBtnNum) == false && clickedBtnNum != currentPos) {   // 파리가 위치한 곳을 클릭할 수 없음
                     //색상 변경
-                    tmp.setBackgroundColor(Color.YELLOW);
+                    tmp.setBackgroundColor(Color.parseColor("#FFCC00"));
 
                     //클릭한 버튼 더 이상 클릭 못하게
                     System.out.println("선택된 버튼 : " + clickedBtnNum);
