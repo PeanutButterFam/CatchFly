@@ -103,13 +103,6 @@ public class MainActivity extends AppCompatActivity {
         currentPos = randomLoc;
 
         isMyTurn = true;
-//        Handler handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                btn_al.get(randomLoc).setBackground(defbtn);
-//            }
-//        }, 1000);
     }
 
     public void moveBee(){ //사용자부터 번갈아 플레이
@@ -119,62 +112,114 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<Integer> availablePos = new ArrayList<>();
 
+        int left = currentPos - 1;
+        int right = currentPos + 1;
+        int up = currentPos - 6;
+        int down = currentPos + 6;
+
         //가능한 위치 인덱스 넣기
         switch (currentPos){
             case 0:
-                availablePos.add(currentPos + 1);
-                availablePos.add(currentPos + 6);
+                if(isSelected.get(right) == false){
+                    availablePos.add(right);
+                }
+                if(isSelected.get(down) == false){
+                    availablePos.add(down);
+                }
                 break;
             case 5:
-                availablePos.add(currentPos - 1);
-                availablePos.add(currentPos + 6);
+                if(isSelected.get(left) == false){
+                    availablePos.add(left);
+                }
+                if(isSelected.get(down) == false){
+                    availablePos.add(down);
+                }
                 break;
             case 30:
-                availablePos.add(currentPos + 1);
-                availablePos.add(currentPos - 6);
+                if(isSelected.get(right) == false){
+                    availablePos.add(right);
+                }
+                if(isSelected.get(up) == false){
+                    availablePos.add(up);
+                }
                 break;
             case 35:
-                availablePos.add(currentPos - 1);
-                availablePos.add(currentPos - 6);
+                if(isSelected.get(left) == false){
+                    availablePos.add(left);
+                }
+                if(isSelected.get(up) == false){
+                    availablePos.add(up);
+                }
                 break;
             case 1:
             case 2:
             case 3:
             case 4:
-                availablePos.add(currentPos - 1);
-                availablePos.add(currentPos + 1);
-                availablePos.add(currentPos + 6);
+                if(isSelected.get(left) == false){
+                    availablePos.add(left);
+                }
+                if(isSelected.get(right) == false){
+                    availablePos.add(right);
+                }
+                if(isSelected.get(down) == false){
+                    availablePos.add(down);
+                }
                 break;
             case 6:
             case 12:
             case 18:
             case 24:
-                availablePos.add(currentPos + 1);
-                availablePos.add(currentPos - 6);
-                availablePos.add(currentPos + 6);
+                if(isSelected.get(right) == false){
+                    availablePos.add(right);
+                }
+                if(isSelected.get(up) == false){
+                    availablePos.add(up);
+                }
+                if(isSelected.get(down) == false){
+                    availablePos.add(down);
+                }
                 break;
             case 31:
             case 32:
             case 33:
             case 34:
-                availablePos.add(currentPos - 1);
-                availablePos.add(currentPos + 1);
-                availablePos.add(currentPos - 6);
+                if(isSelected.get(left) == false){
+                    availablePos.add(left);
+                }
+                if(isSelected.get(right) == false){
+                    availablePos.add(right);
+                }
+                if(isSelected.get(up) == false){
+                    availablePos.add(up);
+                }
                 break;
             case 11:
             case 17:
             case 23:
             case 29:
-                availablePos.add(currentPos - 1);
-                availablePos.add(currentPos - 6);
-                availablePos.add(currentPos + 6);
+                if(isSelected.get(left) == false){
+                    availablePos.add(left);
+                }
+                if(isSelected.get(up) == false){
+                    availablePos.add(up);
+                }
+                if(isSelected.get(down) == false){
+                    availablePos.add(down);
+                }
                 break;
             default:
-                availablePos.add(currentPos - 1);
-                availablePos.add(currentPos + 1);
-                availablePos.add(currentPos - 6);
-                availablePos.add(currentPos + 6);
-
+                if(isSelected.get(left) == false){
+                    availablePos.add(left);
+                }
+                if(isSelected.get(right) == false){
+                    availablePos.add(right);
+                }
+                if(isSelected.get(up) == false){
+                    availablePos.add(up);
+                }
+                if(isSelected.get(down) == false){
+                    availablePos.add(down);
+                }
         }
 
         Collections.shuffle(availablePos);
