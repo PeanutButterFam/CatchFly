@@ -3,6 +3,7 @@ package peanutbutterfam.catchfly;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     Drawable defaultBtn;
 
     Boolean isMyTurn = false;
+    Boolean isWin = false;
     int currentPos; // 현재 파리의 위치
 
     @Override
@@ -101,8 +103,33 @@ public class MainActivity extends AppCompatActivity {
             isMyTurn = true;
         }
         else { // 파리가 더 이상 움직일 칸이 없을경우
-            return;
+            isWin = true;
+            showResultDialog();
         }
+    }
+
+    public void showResultDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        if(isWin == true){
+            builder.setTitle("YOU WIN");
+        }else{
+            builder.setTitle("YOU LOSE");
+        }
+
+        builder.setPositiveButton("종료", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(MainActivity.this, "종료", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("다시 플레이", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(MainActivity.this, "다시 플레이", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.show();
     }
 
     class UserBtnListener implements View.OnClickListener { // 사용자가 버튼을 선태한 경우 리스너
@@ -134,7 +161,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else {
                         //"You Lose" alertdialog
-                        showLoseDialog();
+                        isWin = false;
+                        showResultDialog();
                     }
                     isMyTurn = false;
 
@@ -142,10 +170,6 @@ public class MainActivity extends AppCompatActivity {
                     moveBee();
                 }
             }
-        }
-
-        public void showLoseDialog() {
-            Toast.makeText(MainActivity.this, "YOU LOSE", Toast.LENGTH_SHORT).show();
         }
     }
 }
