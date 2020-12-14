@@ -25,7 +25,7 @@ class Block {
 }
 
 public class MainActivity extends AppCompatActivity {
-    public static int leftBlocks = Block.LEFT_BLOCKS; // 막을 수 있는 블럭 개수
+    public static int leftBlocks; // 막을 수 있는 블럭 개수
 
     ArrayList<Button> btn_al = new ArrayList<>(); //버튼 리스트
     ArrayList<Boolean> isSelected = new ArrayList<>(); //사용자가 선택한 버튼
@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        leftBlocks = Block.LEFT_BLOCKS;
 
         // for를 이용한 버튼id 연결 "btn_al.add(findViewById(R.id.pos00));" 대신 사용
         for(int i=0; i<Block.POS_Y; i++) {
