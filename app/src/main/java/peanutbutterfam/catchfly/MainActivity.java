@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +17,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 class Block {
     public final static int LEFT_BLOCKS = 15;  // 막을 수 있는 블럭 개수
@@ -30,16 +30,17 @@ public class MainActivity extends AppCompatActivity {
     public static int leftBlocks; // 막을 수 있는 블럭 개수
 
     ArrayList<Button> btn_al = new ArrayList<>(); //버튼 리스트
+    ArrayList<Integer> tempNum = new ArrayList<>(); //임시 번호
+    ArrayList<Integer> mine_num = new ArrayList<>(); //지뢰 블럭 번호
     ArrayList<Boolean> isSelected = new ArrayList<>(); //사용자가 선택한 버튼
 
-    TextView leftTime, tvBlocks;
+    TextView tvBlocks;
     Drawable defaultBtn;
     MediaPlayer mediaPlayer;
-    CountDownTimer timer;
 
     Boolean isMyTurn = false;
     Boolean isWin = false;
-    Boolean onclickActivated = false;
+    Boolean isMine = false;
     int currentPos; // 현재 파리의 위치
 
     @Override
@@ -63,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
         defaultBtn = btn_al.get(0).getBackground();
 
-        leftTime = findViewById(R.id.leftTime);
         tvBlocks = findViewById(R.id.tvBlocks);
 
         UserBtnListener userListener = new UserBtnListener();
@@ -76,6 +76,20 @@ public class MainActivity extends AppCompatActivity {
             isSelected.add(false);
         }
 
+        //임시 블럭 번호 넣기
+        for(int i = 0;i < 36; i++){
+            tempNum.add(i);
+        }
+
+        Collections.shuffle(tempNum);
+
+        //지뢰 블럭 번호
+        for(int i = 0; i < 5; i++){
+            mine_num.add(tempNum.get(i));
+        }
+
+        System.out.println(mine_num);
+
         //파리 처음 위치 놓기
         putFirstLoc();
     }
@@ -84,8 +98,6 @@ public class MainActivity extends AppCompatActivity {
         currentPos = (int)(Math.random() * Block.BLOCK_NUM); // 0 ~ 35
         btn_al.get(currentPos).setBackgroundResource(R.drawable.bee);
         isMyTurn = true;
-
-        countDown();
     }
 
     public void moveBee() { // 사용자부터 번갈아 플레이
@@ -121,32 +133,6 @@ public class MainActivity extends AppCompatActivity {
             isWin = true;
             showResultDialog();
         }
-
-        onclickActivated = false;
-        countDown();
-    }
-
-    public void countDown(){
-        timer = new CountDownTimer(4000, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                //leftTime.setVisibility(View.VISIBLE);
-                System.out.println("time : "+millisUntilFinished / 1000);
-                leftTime.setText(millisUntilFinished / 1000+"");
-                millisUntilFinished =- 1000;
-            }
-
-            @Override
-            public void onFinish() {
-                //onclick실행 안됐으면 blocks - 5
-                if(onclickActivated == false){
-                    MainActivity.leftBlocks -= 5;
-                    checkLeftBlocks();
-
-                    tvBlocks.setText("남은 블락 " + MainActivity.leftBlocks);
-                }
-            }
-        }.start();
     }
 
     public void showResultDialog(){
@@ -159,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         builder.setCancelable(false);
-        
+
         builder.setPositiveButton("종료", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -179,17 +165,10 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
-    public void checkLeftBlocks(){
-        if(MainActivity.leftBlocks < 0){
-            //"You Lose" alertdialog
-            isWin = false;
-            showResultDialog();
-        }
-    }
-
     class UserBtnListener implements View.OnClickListener { // 사용자가 버튼을 선태한 경우 리스너
         @Override
         public void onClick(View v) {
+            isMine = false;
             Button tmp = (Button)v;
 
             int clickedBtnNum = -1;
@@ -200,25 +179,40 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            System.out.println("clickedBtnNum : "+clickedBtnNum);
+
             if(isMyTurn == true) {
                 if(isSelected.get(clickedBtnNum) == false && clickedBtnNum != currentPos) {   // 파리가 위치한 곳을 클릭할 수 없음
-                    //색상 변경
-                    tmp.setBackgroundColor(Color.parseColor("#FFCC00"));
+                    if(mine_num.contains(clickedBtnNum)){
+                        //지뢰 버튼 선택
+                        tmp.setBackgroundColor(Color.RED);
+                        isMine = true;
+                    }else{
+                        //색상 변경
+                        tmp.setBackgroundColor(Color.parseColor("#FFCC00"));
+                    }
 
                     //클릭한 버튼 더 이상 클릭 못하게
                     System.out.println("선택된 버튼 : " + clickedBtnNum);
                     isSelected.set(clickedBtnNum, true);
 
                     if(MainActivity.leftBlocks > 0) {
-                        //남은 블럭 수 -1
-                        MainActivity.leftBlocks--;
+                        if (isMine == false) {
+                            //남은 블럭 수 -1
+                            MainActivity.leftBlocks--;
+                        } else {
+                            MainActivity.leftBlocks -= 5;
+                        }
                         tvBlocks.setText("남은 블락 " + MainActivity.leftBlocks);
+                    }
 
-                        checkLeftBlocks();
+                    if(MainActivity.leftBlocks <= 0){
+                        //"You Lose" alertdialog
+                        isWin = false;
+                        showResultDialog();
                     }
 
                     isMyTurn = false;
-                    onclickActivated = true;
 
                     //deleteBee = true;
                     moveBee();
