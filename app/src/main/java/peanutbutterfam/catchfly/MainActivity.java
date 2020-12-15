@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("종료", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                mediaPlayer.stop();
                 finish();
             }
         });
@@ -139,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                mediaPlayer.stop();
                 finish();
             }
         });
