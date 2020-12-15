@@ -120,6 +120,8 @@ public class MainActivity extends AppCompatActivity {
             builder.setTitle("YOU LOSE");
         }
 
+        builder.setCancelable(false);
+        
         builder.setPositiveButton("종료", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -170,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                             showResultDialog();
                         }
                     }
-                    
+
                     isMyTurn = false;
 
                     //deleteBee = true;
