@@ -126,6 +126,8 @@ public class MainActivity extends AppCompatActivity {
             builder.setTitle("YOU LOSE");
         }
 
+        builder.setCancelable(false);
+        
         builder.setPositiveButton("종료", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -169,12 +171,14 @@ public class MainActivity extends AppCompatActivity {
                         //남은 블럭 수 -1
                         MainActivity.leftBlocks--;
                         tvBlocks.setText("남은 블락 " + MainActivity.leftBlocks);
+
+                        if(MainActivity.leftBlocks == 0){
+                            //"You Lose" alertdialog
+                            isWin = false;
+                            showResultDialog();
+                        }
                     }
-                    else {
-                        //"You Lose" alertdialog
-                        isWin = false;
-                        showResultDialog();
-                    }
+
                     isMyTurn = false;
 
                     //deleteBee = true;
