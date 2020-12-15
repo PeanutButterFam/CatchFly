@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
@@ -31,12 +32,14 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Button> btn_al = new ArrayList<>(); //버튼 리스트
     ArrayList<Boolean> isSelected = new ArrayList<>(); //사용자가 선택한 버튼
 
-    TextView tvBlocks;
+    TextView leftTime, tvBlocks;
     Drawable defaultBtn;
     MediaPlayer mediaPlayer;
+    CountDownTimer timer;
 
     Boolean isMyTurn = false;
     Boolean isWin = false;
+    Boolean onclickActivated = false;
     int currentPos; // 현재 파리의 위치
 
     @Override
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         defaultBtn = btn_al.get(0).getBackground();
 
+        leftTime = findViewById(R.id.leftTime);
         tvBlocks = findViewById(R.id.tvBlocks);
 
         UserBtnListener userListener = new UserBtnListener();
@@ -80,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
         currentPos = (int)(Math.random() * Block.BLOCK_NUM); // 0 ~ 35
         btn_al.get(currentPos).setBackgroundResource(R.drawable.bee);
         isMyTurn = true;
+
+        countDown();
     }
 
     public void moveBee() { // 사용자부터 번갈아 플레이
@@ -115,6 +121,32 @@ public class MainActivity extends AppCompatActivity {
             isWin = true;
             showResultDialog();
         }
+
+        onclickActivated = false;
+        countDown();
+    }
+
+    public void countDown(){
+        timer = new CountDownTimer(4000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                //leftTime.setVisibility(View.VISIBLE);
+                System.out.println("time : "+millisUntilFinished / 1000);
+                leftTime.setText(millisUntilFinished / 1000+"");
+                millisUntilFinished =- 1000;
+            }
+
+            @Override
+            public void onFinish() {
+                //onclick실행 안됐으면 blocks - 5
+                if(onclickActivated == false){
+                    MainActivity.leftBlocks -= 5;
+                    checkLeftBlocks();
+
+                    tvBlocks.setText("남은 블락 " + MainActivity.leftBlocks);
+                }
+            }
+        }.start();
     }
 
     public void showResultDialog(){
@@ -147,6 +179,14 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
+    public void checkLeftBlocks(){
+        if(MainActivity.leftBlocks < 0){
+            //"You Lose" alertdialog
+            isWin = false;
+            showResultDialog();
+        }
+    }
+
     class UserBtnListener implements View.OnClickListener { // 사용자가 버튼을 선태한 경우 리스너
         @Override
         public void onClick(View v) {
@@ -174,14 +214,11 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.leftBlocks--;
                         tvBlocks.setText("남은 블락 " + MainActivity.leftBlocks);
 
-                        if(MainActivity.leftBlocks == 0){
-                            //"You Lose" alertdialog
-                            isWin = false;
-                            showResultDialog();
-                        }
+                        checkLeftBlocks();
                     }
 
                     isMyTurn = false;
+                    onclickActivated = true;
 
                     //deleteBee = true;
                     moveBee();
