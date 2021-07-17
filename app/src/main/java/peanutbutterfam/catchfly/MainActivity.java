@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //임시 블럭 번호 넣기
-        for(int i = 0;i < 36; i++){
+        for(int i = 0;i < Block.BLOCK_NUM; i++){
             tempNum.add(i);
         }
 
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
     public void showResultDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        if(isWin == true){
+        if(isWin){
             builder.setTitle("YOU WIN");
         }else{
             builder.setTitle("YOU LOSE");
@@ -181,8 +181,8 @@ public class MainActivity extends AppCompatActivity {
 
             System.out.println("clickedBtnNum : "+clickedBtnNum);
 
-            if(isMyTurn == true) {
-                if(isSelected.get(clickedBtnNum) == false && clickedBtnNum != currentPos) {   // 파리가 위치한 곳을 클릭할 수 없음
+            if(isMyTurn) {
+                if(!isSelected.get(clickedBtnNum) && clickedBtnNum != currentPos) {   // 파리가 위치한 곳을 클릭할 수 없음
                     if(mine_num.contains(clickedBtnNum)){
                         //지뢰 버튼 선택
                         tmp.setBackgroundColor(Color.RED);
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                     isSelected.set(clickedBtnNum, true);
 
                     if(MainActivity.leftBlocks > 0) {
-                        if (isMine == false) {
+                        if (!isMine) {
                             //남은 블럭 수 -1
                             MainActivity.leftBlocks--;
                         } else {
